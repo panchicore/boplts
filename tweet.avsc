@@ -1,0 +1,11 @@
+{"namespace": "hardvard.avro",
+ "type": "record",
+ "name": "Tweet",
+ "fields": [
+     {"name": "id",  "type": "long"},
+     {"name": "created_at", "type": "string"},
+     {"name": "coord", "type": "string"},
+     {"name": "user_name", "type": "string"},
+     {"name": "text", "type": "string"}
+ ]
+}
