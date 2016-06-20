@@ -28,6 +28,7 @@ for dir in dirs:
         os.path.join(LTS_BASE_DIR, dir.strftime("%Y/%m/%d"), "*.avro")
     )
     # TODO: not existing dir paths will generate java.io.IOException
+    # for now use create_dirs.py to make entire folder structure.
 
 df = sqlContext.read.format("com.databricks.spark.avro").load(data_files)
 df.filter(query).write.mode('append').json(output)
