@@ -1,4 +1,3 @@
-
 # pyspark search.py "text like '%hello%'" "2013-01-01 TO 2013-01-02" test.json  --packages com.databricks:spark-avro_2.10:2.0.1
 
 import sys, time, os
@@ -28,6 +27,7 @@ for dir in dirs:
     data_files.append(
         os.path.join(LTS_BASE_DIR, dir.strftime("%Y/%m/%d"), "*.avro")
     )
+    # TODO: not existing dir paths will generate java.io.IOException
 
 df = sqlContext.read.format("com.databricks.spark.avro").load(data_files)
 df.filter(query).write.mode('append').json(output)
