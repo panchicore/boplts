@@ -5,7 +5,6 @@ from datetime import datetime
 from dateutil.rrule import rrule, DAILY
 from pyspark import SparkContext
 from pyspark.sql import SQLContext
-from pyspark.conf import SparkConf
 
 LTS_BASE_DIR = os.environ.get("LTS_BASE_DIR", "fs")
 LTS_RESULTS_DIR = os.environ.get("LTS_RESULTS_DIR", "./output")
@@ -39,7 +38,7 @@ if output_format == "json":
 else:
     df.filter(query).write\
         .format("com.databricks.spark.csv")\
-        .option("header", "true")\
+        .option("header", "false")\
         .save(output)
 
 print time.time() - start_time, 'secs'

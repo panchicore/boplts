@@ -24,15 +24,20 @@ def search(query, output_file):
     }
     """
 
+    # TODO: better sql builder
+    # TODO: make geo queries
+
     # if query contains more than url params.
     if query.count("?") > 0:
         query = query.split("?")[1]
 
     params = parse_qs(query)
+    wheres = []
 
     text = None
     if params.get('q.text'):
-        text = params.get('q.text')[0]
+        text = "text like '%{0}%'".format(params.get('q.text')[0])
+        wheres.append(text)
 
     time_range = None
     if params.get('q.time'):
@@ -45,7 +50,8 @@ def search(query, output_file):
 
     user_name = None
     if params.get('q.user'):
-        user_name = params.get('q.user')[0]
+        user_name = "user_name = '{}'".format(params.get('q.user')[0])
+        wheres.append(user_name)
 
     geo = None
     if params.get('q.geo'):
@@ -56,7 +62,7 @@ def search(query, output_file):
         limit = params.get('d.docs.limit')[0]
 
     command_params = {
-        "sql_query": "text like '%{0}%'".format(text),
+        "sql_query": " AND ".join(wheres),
         "time_range": time_range,
         "output_file": output_file
     }
