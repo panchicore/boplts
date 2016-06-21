@@ -1,4 +1,4 @@
-##BOPLTS
+##LTS
 Long time storage for the billion object platform.
 After enrich tweets Kafta will be writing the files into this machine in a simple time sorted/organized structure:
 
@@ -58,6 +58,10 @@ Results will be store in JSON format and splited in multiple parts, to get a sin
 ##Requirements
 - install java spark and pyspark bindings
 - install requirements.txt
+
+#Swagger export request URL
+This command receives the swagger request URL and will generate a file as Sorl does.
+`python lts.py "http://54.158.101.33:8080/bopws/tweets/export?q.time=*&q.geo=%5B-90%2C-180%20TO%2090%2C180%5D&q.text=test&q.user=panchicore"`
 
 ## Benchmark
 on 300 millions tweets, search a keyword takes 15 minutes.
