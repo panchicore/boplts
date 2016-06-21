@@ -60,8 +60,9 @@ Results will be store in JSON format and splited in multiple parts, to get a sin
 - install requirements.txt
 
 #Swagger export request URL
-This command receives the swagger request URL and will generate a file as Sorl does.
+This command receives the swagger request URL to export the data as Sorl does.
 `python lts.py "http://54.158.101.33:8080/bopws/tweets/export?q.time=*&q.geo=%5B-90%2C-180%20TO%2090%2C180%5D&q.text=test&q.user=panchicore"`
+Output will be a Sorl-style CSV file.
 
 ## Benchmark
 on 300 millions tweets, search a keyword takes 15 minutes.
